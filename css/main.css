@@ -248,6 +248,42 @@ h1.nombre-sitio {
   font-size: 5.9vw;
   text-transform: uppercase;
 }
+.nombre-sitio span {
+  position: relative;
+  text-shadow: 0 0 20px black;
+}
+@media only screen and (min-width: 992px) {
+  .char1 {
+    top: 20px; right: 10px;
+  }
+  .char2 {
+    top: 5px; left: 10px;
+  }
+  .char3 {
+    top: 15px; right: 0;
+  }
+  .char4 {
+    top: 0; right: 15px;
+  }
+  .char5 {
+    top: -15px; left: -5px;
+  }
+  .char6 {
+    top: 20px; left: 5px;
+  }
+  .char7 {
+    top: 5px; right: -20px;
+  }
+  .char8 {
+    top: 20px; right: -10px;
+  }
+  .char9 {
+    top: -25px; left: 5px;
+  }
+  .char10 {
+    top: 30px; left: -20px;
+  }
+}
 @media only screen and (min-width: 768px) {
   h1.nombre-sitio {
     font-size: 11.5vw;
@@ -266,6 +302,13 @@ div.barra {
   background-color: #353535;
   padding: 20px 0;
 }
+.fixed {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
 div.logo {
   width: 80%;
   float: left;
@@ -281,6 +324,7 @@ div.logo img {
 /** NAV-PRINCIPAL **/
 nav.navegacion-principal {
   display: none;
+  width: 100%;
 }
 nav.navegacion-principal a {
   font-family: 'Oswald', sans-serif;
@@ -293,6 +337,7 @@ nav.navegacion-principal a {
   display: block;
   text-align: center;
   padding: 10px 0;
+  clear: both;
 }
 nav.navegacion-principal a:hover {
   background-color: #fe4918;
@@ -372,6 +417,9 @@ div.programa-evento {
     width: 50%;
   }
 }
+div.ocultar {
+  display: none;
+}
 /** MENU EVENTO **/
 nav.menu-programa {
   width: 100%;
@@ -391,6 +439,19 @@ nav.menu-programa a {
   font-family: 'Oswald', sans-serif;
   text-decoration: none;
   font-size: 1.2em;
+  position: relative;
+}
+nav.menu-programa a.activo::after {
+  position: absolute;
+  content: '';
+  left: 68px;
+  right: 0;
+  width: 16px;
+  height: 20px;
+  background-image: url(../img/talleres-flecha.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  bottom: -25px;
 }
 @media only screen and (min-width: 768px) {
   nav.menu-programa a {
@@ -406,7 +467,7 @@ div.detalle-evento p i {
 /** DETALLE EVENTO **/
 div.detalle-evento {
   margin-top: 20px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #fe4918;
   padding: 0 20px;
 }
 div.detalle-evento:nth-child(2) {
@@ -708,6 +769,15 @@ p.copyright {
 }
 
 /** INTERNO **/
+
+/** CONFERENCIA **/
+div.galeria a {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+body.conferencia .navegacion-principal a.activo {
+  border-bottom: 2px solid #fe4918;
+}
 /** REGISTRO **/
 form.registro h3 {
   text-align: center;

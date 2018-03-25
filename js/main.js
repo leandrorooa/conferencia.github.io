@@ -58,111 +58,173 @@ var api = 'AIzaSyDWMYlUbPi7ULIDre_ndTPCMmUjK6TIpR0';
     var camisas = document.getElementById('camisa_evento');
     var etiquetas = document.getElementById('etiquetas');
 
-    calcular.addEventListener('click', calcularmontos);
+    if (document.getElementById('calcular')) {
 
-    pase_dia.addEventListener('input', mostrardias);
-    pase_dosdias.addEventListener('input', mostrardias);
-    pase_completo.addEventListener('input', mostrardias);
+      calcular.addEventListener('click', calcularmontos);
 
-    nombre.addEventListener('blur', validarcampos);
-    apellido.addEventListener('blur', validarcampos);
-    email.addEventListener('blur', validarcampos);
-    email.addEventListener('blur', validarmail);
+      pase_dia.addEventListener('input', mostrardias);
+      pase_dosdias.addEventListener('input', mostrardias);
+      pase_completo.addEventListener('input', mostrardias);
 
-    function validarcampos() {
-      if (this.value === '') {
-        errordiv.style.display = 'block';
-        errordiv.innerHTML = 'Este campo es obligatorio';
-        this.style.border = '1px solid red';
-        errordiv.style.border = '1px solid red';
-      } else {
-        errordiv.style.display = 'none';
-        this.style.border = '1px solid #cccccc';
+      nombre.addEventListener('blur', validarcampos);
+      apellido.addEventListener('blur', validarcampos);
+      email.addEventListener('blur', validarcampos);
+      email.addEventListener('blur', validarmail);
+
+      function validarcampos() {
+        if (this.value === '') {
+          errordiv.style.display = 'block';
+          errordiv.innerHTML = 'Este campo es obligatorio';
+          this.style.border = '1px solid red';
+          errordiv.style.border = '1px solid red';
+        } else {
+          errordiv.style.display = 'none';
+          this.style.border = '1px solid #cccccc';
+        }
       }
-    }
 
-    function validarmail() {
-      if (this.value.indexOf('@') > -1) {
-        errordiv.style.display = 'none';
-        this.style.border = '1px solid #cccccc';
-      } else {
-        errordiv.style.display = 'block';
-        errordiv.innerHTML = 'Email no válido';
-        this.style.border = '1px solid red';
-        errordiv.style.border = '1px solid red';
+      function validarmail() {
+        if (this.value.indexOf('@') > -1) {
+          errordiv.style.display = 'none';
+          this.style.border = '1px solid #cccccc';
+        } else {
+          errordiv.style.display = 'block';
+          errordiv.innerHTML = 'Email no válido';
+          this.style.border = '1px solid red';
+          errordiv.style.border = '1px solid red';
+        }
       }
-    }
 
-    function calcularmontos(event) {
-      event.preventDefault();
-      if (regalo.value === '') {
-        alert('Debes seleccionar un regalo');
-        regalo.focus();
-      } else {
+      function calcularmontos(event) {
+        event.preventDefault();
+        if (regalo.value === '') {
+          alert('Debes seleccionar un regalo');
+          regalo.focus();
+        } else {
+          var boletodia = parseInt(pase_dia.value, 10) || 0,
+              boleto2dias = parseInt(pase_dosdias.value, 10) || 0,
+              boletocompleto = parseInt(pase_completo.value, 10) || 0,
+              cantcamisas = parseInt(camisas.value, 10) || 0,
+              cantetiquetas = parseInt(etiquetas.value, 10) || 0;
+
+          var montototal = (boletodia * 30) + (boleto2dias * 45) + (boletocompleto * 50) + ((cantcamisas * 10) * .93) + (cantetiquetas * 2);
+
+          var listadoproductos = [];
+
+          if (boletodia >= 1) {
+          listadoproductos.push(boletodia + ' pases por días');
+          }
+          if (boleto2dias >= 1) {
+          listadoproductos.push(boleto2dias + ' pases por 2 días');
+          }
+          if (boletocompleto >= 1) {
+          listadoproductos.push(boletocompleto + ' pases completos');
+          }
+          if (cantcamisas >= 1) {
+          listadoproductos.push(cantcamisas + ' camisas');
+          }
+          if (cantetiquetas >= 1) {
+          listadoproductos.push(cantetiquetas + ' etiquetas');
+          }
+
+          lista_productos.style.display = 'block';
+
+          lista_productos.innerHTML = '';
+          for (var i = 0; i < listadoproductos.length; i++) {
+            lista_productos.innerHTML += listadoproductos[i] + '<br/>';
+          }
+          suma.innerHTML = '$ ' + montototal.toFixed(2);
+
+        }
+      }
+
+      function mostrardias() {
         var boletodia = parseInt(pase_dia.value, 10) || 0,
             boleto2dias = parseInt(pase_dosdias.value, 10) || 0,
-            boletocompleto = parseInt(pase_completo.value, 10) || 0,
-            cantcamisas = parseInt(camisas.value, 10) || 0,
-            cantetiquetas = parseInt(etiquetas.value, 10) || 0;
+            boletocompleto = parseInt(pase_completo.value, 10) || 0;
 
-        var montototal = (boletodia * 30) + (boleto2dias * 45) + (boletocompleto * 50) + ((cantcamisas * 10) * .93) + (cantetiquetas * 2);
+        var diaselegidos = [];
 
-        var listadoproductos = [];
-
-        if (boletodia >= 1) {
-        listadoproductos.push(boletodia + ' pases por días');
+        if (boletodia > 0) {
+          diaselegidos.push('viernes');
         }
-        if (boleto2dias >= 1) {
-        listadoproductos.push(boleto2dias + ' pases por 2 días');
+        if (boleto2dias > 0) {
+          diaselegidos.push('viernes', 'sabado');
         }
-        if (boletocompleto >= 1) {
-        listadoproductos.push(boletocompleto + ' pases completos');
+        if (boletocompleto > 0) {
+          diaselegidos.push('viernes', 'sabado', 'domingo');
         }
-        if (cantcamisas >= 1) {
-        listadoproductos.push(cantcamisas + ' camisas');
+        for (var i = 0; i < diaselegidos.length; i++) {
+            document.getElementById(diaselegidos[i]).style.display = 'block';
         }
-        if (cantetiquetas >= 1) {
-        listadoproductos.push(cantetiquetas + ' etiquetas');
-        }
-
-        lista_productos.style.display = 'block';
-
-        lista_productos.innerHTML = '';
-        for (var i = 0; i < listadoproductos.length; i++) {
-          lista_productos.innerHTML += listadoproductos[i] + '<br/>';
-        }
-        suma.innerHTML = '$ ' + montototal.toFixed(2);
-
-      }
-    }
-
-    function mostrardias() {
-      var boletodia = parseInt(pase_dia.value, 10) || 0,
-          boleto2dias = parseInt(pase_dosdias.value, 10) || 0,
-          boletocompleto = parseInt(pase_completo.value, 10) || 0;
-
-      var diaselegidos = [];
-
-      if (boletodia > 0) {
-        diaselegidos.push('viernes');
-      }
-      if (boleto2dias > 0) {
-        diaselegidos.push('viernes', 'sabado');
-      }
-      if (boletocompleto > 0) {
-        diaselegidos.push('viernes', 'sabado', 'domingo');
-      }
-      for (var i = 0; i < diaselegidos.length; i++) {
-          document.getElementById(diaselegidos[i]).style.display = 'block';
-      }
-      var dias = document.querySelectorAll('.contenido-dia');
-      if (diaselegidos.length == 0) {
-        for (var i = 0; i < dias.length; i++) {
-          dias[i].style.display = 'none';
+        var dias = document.querySelectorAll('.contenido-dia');
+        if (diaselegidos.length == 0) {
+          for (var i = 0; i < dias.length; i++) {
+            dias[i].style.display = 'none';
+          }
         }
       }
     }
-
 
   }); // DOM CONTENT LOADED
 })();
+
+$(function() {
+
+  // LETTERING
+
+  $('.nombre-sitio').lettering();
+
+  // BARRA FIJA
+
+  var alturaventana = $(window).height();
+  var alturabarra = $('.barra').innerHeight();
+  $(window).scroll(function() {
+    var scroll = $(window).scrollTop();
+    if (scroll > alturaventana) {
+      $('.barra').addClass('fixed');
+      $('body').css({'margin-top': alturabarra + 'px'});
+    } else {
+      $('.barra').removeClass('fixed');
+      $('body').css({'margin-top': '0px'});
+    }
+  });
+
+  // MENU RESPONSIVO
+
+  $('.menu-movil').on('click', function() {
+    $('.navegacion-principal').slideToggle();
+  });
+
+  // PROGRAMA DE CONFERENCIAS
+
+  $('.programa-evento .info-curso:first').show();
+  $('.menu-programa a:first').addClass('activo');
+  $('.menu-programa a').on('click', function(){
+    $('.menu-programa a').removeClass('activo');
+    $(this).addClass('activo');
+    $('.ocultar').hide();
+    var enlace = $(this).attr('href');
+    $(enlace).fadeIn(1000);
+
+    return false;
+  });
+
+  // ANIMACIONES A LOS NUMEROS
+
+  $('.resumen-evento li:nth-child(1) p').animateNumber({number: 6}, 1200);
+  $('.resumen-evento li:nth-child(2) p').animateNumber({number: 15}, 1200);
+  $('.resumen-evento li:nth-child(3) p').animateNumber({number: 3}, 1200);
+  $('.resumen-evento li:nth-child(4) p').animateNumber({number: 9}, 1200);
+
+  // CUENTA REGRESIVA
+
+  $('.cuenta-regresiva').countdown('2018/04/06 21:00:00', function(event) {
+    $('#dias').html(event.strftime('%D'));
+    $('#horas').html(event.strftime('%H'));
+    $('#minutos').html(event.strftime('%M'));
+    $('#segundos').html(event.strftime('%S'));
+  });
+
+
+});

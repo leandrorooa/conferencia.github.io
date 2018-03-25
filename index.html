@@ -37,7 +37,7 @@
               <div class="informacion-evento">
                 <div class="clearfix">
                   <p class="fecha"><i class="fa fa-calendar" aria-hidden="true"></i> 10-12 DIC</p>
-                  <p class="ciudad"><i class="fa fa-map-marker" aria-hidden="true"></i> Santiago , CL</p>
+                  <p class="ciudad"><i class="fa fa-map-marker" aria-hidden="true"></i> Stgo de Chile, CH</p>
                 </div><!--clearfix-->
                 <h1 class="nombre-sitio">GldWebCamp</h1>
                 <p class="slogan">La mejor conferencia de <span>diseño web</span></p>
@@ -58,7 +58,7 @@
             </div>
             <div class="contenedor-nav">
               <nav class="navegacion-principal">
-                <a href="#">Conferencias</a>
+                <a href="conferencia.html">Conferencias</a>
                 <a href="#">Calendario</a>
                 <a href="#">Invitados</a>
                 <a href="registro.html">Reservaciones</a>
@@ -74,7 +74,7 @@
 
         <section class="programa">
           <div class="contenedor-video">
-            <video autoplay loop poster="bg-talleres.jpg">
+            <video autoplay loop poster="img/bg-talleres.jpg">
               <source src="video/video.mp4" type="video/mp4">
               <source src="video/video.webm" type="video/webm">
               <source src="video/video.ogv" type="video/ogg">
@@ -90,7 +90,7 @@
                   <a href="#conferencias"><i class="fa fa-comment" aria-hidden="true"></i> Conferencias</a>
                   <a href="#seminarios"><i class="fa fa-university" aria-hidden="true"></i> Seminarios</a>
                 </nav>
-                <div id="talleres" class="info-curso ocular clearfix">
+                <div id="talleres" class="info-curso ocultar clearfix">
                   <div class="detalle-evento">
                     <h3>HTML5, CSS3 y JavaScript</h3>
                     <p><i class="fa fa-clock-o" aria-hidden="true"></i> 16:00hrs</p>
@@ -101,10 +101,40 @@
                     <h3>Responsive Web Design</h3>
                     <p><i class="fa fa-clock-o" aria-hidden="true"></i>20:00hrs</p>
                     <p><i class="fa fa-calendar" aria-hidden="true"></i>10 de Dic</p>
-                    <p><i class="fa fa-user" aria-hidden="true"></i>Juan Pablo De la Torre</p>
+                    <p><i class="fa fa-user" aria-hidden="true"></i> Juan Pablo De la Torre</p>
                   </div>
                   <a href="#" class="button float-right">Ver todos</a>
                 </div><!--#talleres-->
+                <div id="conferencias" class="info-curso ocultar clearfix">
+                  <div class="detalle-evento">
+                    <h3>Cómo ser Freelancer</h3>
+                    <p><i class="fa fa-clock-o" aria-hidden="true"></i> 10:00hrs</p>
+                    <p><i class="fa fa-calendar" aria-hidden="true"></i> 10 de Dic</p>
+                    <p><i class="fa fa-user" aria-hidden="true"></i> Gregorio Sanchez</p>
+                  </div>
+                  <div class="detalle-evento">
+                    <h3>Tecnologías del futuro</h3>
+                    <p><i class="fa fa-clock-o" aria-hidden="true"></i>17:00hrs</p>
+                    <p><i class="fa fa-calendar" aria-hidden="true"></i>10 de Dic</p>
+                    <p><i class="fa fa-user" aria-hidden="true"></i> Susan Sanchez</p>
+                  </div>
+                  <a href="#" class="button float-right">Ver todos</a>
+                </div><!--#conferencias-->
+                <div id="seminarios" class="info-curso ocultar clearfix">
+                  <div class="detalle-evento">
+                    <h3>Diseño UI/UX para móviles</h3>
+                    <p><i class="fa fa-clock-o" aria-hidden="true"></i> 17:00hrs</p>
+                    <p><i class="fa fa-calendar" aria-hidden="true"></i> 11 de Dic</p>
+                    <p><i class="fa fa-user" aria-hidden="true"></i> Harold Garcia</p>
+                  </div>
+                  <div class="detalle-evento">
+                    <h3>Aprende a programar en una mañana</h3>
+                    <p><i class="fa fa-clock-o" aria-hidden="true"></i>10:00hrs</p>
+                    <p><i class="fa fa-calendar" aria-hidden="true"></i>11 de Dic</p>
+                    <p><i class="fa fa-user" aria-hidden="true"></i> Susana Rivera</p>
+                  </div>
+                  <a href="#" class="button float-right">Ver todos</a>
+                </div><!--#seminarios-->
               </div><!--.programa-evento-->
             </div><!--.contenedor-->
           </div><!--.contenido-programa-->
@@ -155,10 +185,10 @@
         <div class="contador parallax">
           <div class="contenedor">
             <ul class="resumen-evento clearfix">
-              <li><p class="numero">6</p> Invitados</li>
-              <li><p class="numero">15</p> Talleres</li>
-              <li><p class="numero">3</p> Días</li>
-              <li><p class="numero">9</p> Conferencias</li>
+              <li><p class="numero"></p> Invitados</li>
+              <li><p class="numero"></p> Talleres</li>
+              <li><p class="numero"></p> Días</li>
+              <li><p class="numero"></p> Conferencias</li>
             </ul>
           </div>
         </div>
@@ -254,10 +284,10 @@
           <h2>Faltan</h2>
           <div class="cuenta-regresiva contenedor">
             <ul class="clearfix">
-              <li><p class="numero">80</p> Dias</li>
-              <li><p class="numero">15</p> Horas</li>
-              <li><p class="numero">5</p> Minutos</li>
-              <li><p class="numero">30</p> Segundos</li>
+              <li><p class="numero" id="dias"></p> Dias</li>
+              <li><p class="numero" id="horas"></p> Horas</li>
+              <li><p class="numero" id="minutos"></p> Minutos</li>
+              <li><p class="numero" id="segundos"></p> Segundos</li>
             </ul>
           </div>
         </section>
@@ -295,6 +325,9 @@
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
+        <script src="js/jquery.animateNumber.min.js"></script>
+        <script src="js/jquery.countdown.min.js"></script>
+        <script src="js/jquery.lettering.js"></script>
         <script src="js/main.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWMYlUbPi7ULIDre_ndTPCMmUjK6TIpR0&callback=initMap"
     async defer></script>

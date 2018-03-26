@@ -219,22 +219,36 @@ div.informacion-evento {
   text-align: center;
   color: #ffffff;
 }
-@media only screen and (min-width: 768px) {
-  div.informacion-evento {
-    width: 70%;
-    margin: 0 auto;
-    margin-top: 50px;
-  }
-}
 div.informacion-evento p {
   margin: 0;
   display: inline;
   text-transform: uppercase;
-  font-size: 20px;
+  font-size: 16px;
 }
 div.informacion-evento p i {
   color: #fe4918;
-  font-size: 2.2rem;
+  font-size: 1.5rem;
+}
+div.fecha-lugar {
+  margin: 15px 15px 0 15px;
+}
+@media only screen and (min-width: 768px) {
+  div.informacion-evento {
+    width: 78%;
+    margin: 0 auto;
+    margin-top: 50px;
+  }
+  div.informacion-evento p {
+    font-size: 20px;
+  }
+  div.informacion-evento p i {
+    font-size: 2.2rem;
+  }
+}
+@media only screen and (min-width: 480px) {
+  div.fecha-lugar {
+    margin: 15px 50px 0 50px;
+  }
 }
 p.fecha {
   float: left;
@@ -349,7 +363,7 @@ nav.navegacion-principal a:last-child {
 nav.navegacion-principal a:last-child:hover {
   color: #ffffff;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 992px) {
   nav.navegacion-principal {
     width: 67%;
     float: right;
@@ -376,7 +390,7 @@ div.menu-movil {
 div.menu-movil:hover {
   cursor: pointer;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 992px) {
   div.menu-movil {
     display: none;
   }
